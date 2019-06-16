@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Controls } from "./Controls";
+import { Result } from "./Result";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {config: {}}
+
+  handleConfigChange = (config) => {
+    console.log('settin cfg', config)
+    this.setState({
+      config
+    })
+  }
+
+  handleCalculate = () => {
+    console.log(this.state.config)
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Controls onConfigChange={this.handleConfigChange} onCalculate={this.handleCalculate} />
+        <Result />
+      </div>
+    );
+  }
 }
 
 export default App;
