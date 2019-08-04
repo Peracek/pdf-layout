@@ -43,10 +43,11 @@ export const calc = ({ pageSize, patternSize, copies }) => {
   })
 
   const ys = endIndices.map(({ x, y }) => y).sort((a, b) => a - b)
+  const distinctYs = ys.filter((y, idx) => ys.indexOf(y) === idx)
   const startYs = [...Array(sheetPatternDimensions.x).keys()].map(i => i * sheetCount)
 
   debugger
-  const ultimateResult = ys.map(y => {
+  const ultimateResult = distinctYs.map(y => {
     return startYs.map(startY => {
       const i = startY + y
 
