@@ -28,7 +28,7 @@ export const calc = ({ pageSize, patternSize, copies }) => {
     x: Math.floor(pageSize.x / patternSize.x),
     y: Math.floor(pageSize.y / patternSize.y),
   }
-  debugger
+
   const copiesColumns = copies.map(number => Math.ceil(number / sheetPatternDimensions.y))
   const columnCount = copiesColumns.reduce((acc, number) => (acc += number), 0)
   const sheetCount = Math.ceil(columnCount / sheetPatternDimensions.x)
@@ -45,6 +45,7 @@ export const calc = ({ pageSize, patternSize, copies }) => {
   const ys = endIndices.map(({ x, y }) => y).sort((a, b) => a - b)
   const startYs = [...Array(sheetPatternDimensions.x).keys()].map(i => i * sheetCount)
 
+  debugger
   const ultimateResult = ys.map(y => {
     return startYs.map(startY => {
       const i = startY + y
