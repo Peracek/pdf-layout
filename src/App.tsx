@@ -36,33 +36,34 @@ const defaultConfig: Config = {
   ],
 }
 
-class App extends React.Component<{}, { result: string[][] }> {
+class App extends React.Component<{}, { results: { layout: string[]; count: number }[] }> {
   @observable
   config = defaultConfig
 
   state = {
-    result: [],
+    results: [],
   }
 
   handleCalculate = () => {
     console.log('about to calculate')
-    const result: number[][] = calc({
-      pageSize: this.config.pageSize,
-      patternSize: this.config.patternSize,
-      copies: this.config.patterns.map(p => p.copies),
-    })
-    console.log('result', result)
-    const mapped = result.map(page =>
-      page.map(patternIdx => {
+    const results = calc(
+      this.config.pageSize,
+      this.config.patternSize,
+      this.config.patterns.map(p => p.copies),
+    )
+    console.log('result', results)
+    const mapped = results.map(result => {
+      const layout = result.layout.map(patternIdx => {
         if (patternIdx < this.config.patterns.length) {
           return this.config.patterns[patternIdx].name
         } else {
           return 'blank'
         }
-      }),
-    )
+      })
+      return { layout, count: result.count }
+    })
 
-    this.setState({ result: mapped })
+    this.setState({ results: mapped })
     // alert(JSON.stringify(mapped))
   }
 
@@ -70,7 +71,7 @@ class App extends React.Component<{}, { result: string[][] }> {
     return (
       <div className="App">
         <Controls config={this.config} onCalculate={this.handleCalculate} />
-        <Result result={this.state.result} />
+        <Result results={this.state.results} />
       </div>
     )
   }
