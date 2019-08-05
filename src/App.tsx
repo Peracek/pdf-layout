@@ -59,7 +59,7 @@ class App extends React.Component<{}, { results: { layout: string[]; count: numb
         if (patternIdx < this.config.patterns.length) {
           return this.config.patterns[patternIdx].name
         } else {
-          return 'blank'
+          return 'volno'
         }
       })
       return { layout, count: result.count }
