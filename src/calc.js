@@ -33,7 +33,8 @@ export const calc = ({ pageSize, patternSize, copies }) => {
   const columnCount = copiesColumns.reduce((acc, number) => (acc += number), 0)
   const sheetCount = Math.ceil(columnCount / sheetPatternDimensions.x)
 
-  let acc = -1
+  let acc = 0
+  // FIXME: PROBLEM HERE BELOW
   const endIndices = copiesColumns.map(number => {
     const x = Math.floor((acc + number) / sheetCount)
     const y = (acc + number) % sheetCount
@@ -47,14 +48,18 @@ export const calc = ({ pageSize, patternSize, copies }) => {
   const startYs = [...Array(sheetPatternDimensions.x).keys()].map(i => i * sheetCount)
 
   debugger
+  let lastY = 0
   const ultimateResult = distinctYs.map(y => {
-    return startYs.map(startY => {
+    const copies = y - lastY + 1
+    const layout = startYs.map(startY => {
       const i = startY + y
-
       const result = findFirstLess(endIndices, i)
-      console.log(result)
       return result
     })
+    return {
+      layout,
+      copies,
+    }
   })
 
   return ultimateResult
