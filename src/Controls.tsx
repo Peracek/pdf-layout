@@ -10,7 +10,7 @@ import { observable } from 'mobx'
 export class Controls extends React.Component<{ config: Config; onCalculate: () => void }> {
   addPattern = () => {
     this.props.config.patterns.push({
-      name: 'test',
+      name: `vzor ${this.props.config.patterns.length + 1}`,
       copies: 1,
     })
   }

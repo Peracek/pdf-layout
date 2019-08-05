@@ -1,9 +1,9 @@
 import React from 'react'
-import './App.css'
 import { Controls } from './Controls'
 import { Result } from './Result'
 import { observable } from 'mobx'
 import { calc } from './calc'
+import styled from 'styled-components'
 
 export interface Dimensions {
   x: number
@@ -35,6 +35,8 @@ const defaultConfig: Config = {
     },
   ],
 }
+
+const SApp = styled.div``
 
 class App extends React.Component<{}, { results: { layout: string[]; count: number }[] }> {
   @observable
