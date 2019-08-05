@@ -25,12 +25,12 @@ const defaultConfig: Config = {
     y: 50,
   },
   patternSize: {
-    x: 1,
-    y: 1,
+    x: 10,
+    y: 10,
   },
   patterns: [
     {
-      name: 'pattern A',
+      name: 'vzor 1',
       copies: 100,
     },
   ],

@@ -12,14 +12,14 @@ export class Pattern extends React.Component<{
 
     return (
       <div>
-        name <input value={pattern.name} onChange={e => (pattern.name = e.target.value)} />
-        copies{' '}
+        vzor <input value={pattern.name} onChange={e => (pattern.name = e.target.value)} />
+        počet kopií{' '}
         <input
           type="number"
-          value={pattern.copies}
+          value={pattern.copies !== 0 ? pattern.copies : ''}
           onChange={e => (pattern.copies = +e.target.value)}
         />
-        <button onClick={() => onDelete(pattern)}>delete</button>
+        <button onClick={() => onDelete(pattern)}>odebrat</button>
       </div>
     )
   }

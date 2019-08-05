@@ -9,16 +9,16 @@ export class Dimensions extends React.Component<{ dimensions: DimensionsShape }>
 
     return (
       <div>
-        x{' '}
+        šířka{' '}
         <input
           type="number"
-          value={dimensions.x}
+          value={dimensions.x !== 0 ? dimensions.x : ''}
           onChange={e => (dimensions.x = +e.target.value)}
         />
-        y{' '}
+        výška{' '}
         <input
           type="number"
-          value={dimensions.y}
+          value={dimensions.y !== 0 ? dimensions.y : ''}
           onChange={e => (dimensions.y = +e.target.value)}
         />
       </div>

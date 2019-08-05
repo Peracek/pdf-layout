@@ -5,6 +5,13 @@ import { Config, Pattern as PatternShape } from './App'
 import { Dimensions } from './Dimensions'
 import { Pattern } from './Pattern'
 import { observable } from 'mobx'
+import styled from 'styled-components'
+
+const SControls = styled.div`
+  & > * {
+    margin-bottom: 1em;
+  }
+`
 
 @observer
 export class Controls extends React.Component<{ config: Config; onCalculate: () => void }> {
@@ -25,22 +32,23 @@ export class Controls extends React.Component<{ config: Config; onCalculate: () 
     const { config } = this.props
 
     return (
-      <div>
+      <SControls>
         <div>
-          page size <Dimensions dimensions={config.pageSize} />
+          velikost archu <Dimensions dimensions={config.pageSize} />
         </div>
         <div>
-          pattern size <Dimensions dimensions={config.patternSize} />
+          velikost vzoru <Dimensions dimensions={config.patternSize} />
         </div>
         <div>
-          {config.patterns.map((pattern, idx) => (
-            <Pattern key={idx} pattern={pattern} onDelete={this.deletePattern} />
-          ))}
+          <div>
+            {config.patterns.map((pattern, idx) => (
+              <Pattern key={idx} pattern={pattern} onDelete={this.deletePattern} />
+            ))}
+          </div>
+          <button onClick={this.addPattern}>přidat vzor</button>
         </div>
-        <button onClick={this.addPattern}>add pattern</button>
-        <br />
-        <button onClick={this.props.onCalculate}>calculate</button>
-      </div>
+        <button onClick={this.props.onCalculate}>vypočítat</button>
+      </SControls>
     )
   }
 }
