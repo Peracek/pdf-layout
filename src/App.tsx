@@ -21,12 +21,12 @@ export interface Config {
 
 const defaultConfig: Config = {
   pageSize: {
-    x: 100,
-    y: 50,
+    x: 740,
+    y: 1100,
   },
   patternSize: {
-    x: 10,
-    y: 10,
+    x: 100,
+    y: 100,
   },
   patterns: [
     {

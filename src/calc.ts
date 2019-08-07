@@ -38,11 +38,13 @@ export const calc = (pageSize: Dimensions, patternSize: Dimensions, copies: numb
   const startYs = Array.from(Array(patternsPerPage.x).keys()).map(i => i * pages)
 
   const ys = endIndices.map(x => x % pages)
+  ys.push(pages - 1)
   const distinctYs = ys.filter((y, idx) => ys.indexOf(y) === idx).sort((a, b) => a - b)
 
   const res = distinctYs.map((y, i) => {
     const layout = startYs.map(startY => findFirstLess(endIndices, startY + y))
     const count = y + 1 - (i > 0 ? distinctYs[i - 1] + 1 : 0)
+
     return { layout, count }
   })
 
